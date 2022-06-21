@@ -11,7 +11,7 @@ type HtmlDocument struct {
 	rootNode *html.Node
 
 	source string
-	links  *[]string
+	links  []string
 }
 
 func FromString(source string) (*HtmlDocument, error) {
@@ -26,12 +26,12 @@ func (doc *HtmlDocument) Links() []string {
 	if doc.links == nil {
 		doc.parseForLinks()
 	}
-	return *doc.links
+	return doc.links
 }
 
 func (doc *HtmlDocument) parseForLinks() {
 	links := getUrlList(doc.rootNode)
-	doc.links = &links
+	doc.links = links
 }
 
 // Prüft, ob der gegebenen Knoten ein Anchor-Knoten ist.
