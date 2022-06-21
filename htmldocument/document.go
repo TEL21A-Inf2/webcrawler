@@ -31,13 +31,7 @@ func FromString(source string) (*HtmlDocument, error) {
 // Erzeugt die Liste, falls sie noch nicht existiert.
 func (doc *HtmlDocument) Links() []string {
 	if doc.links == nil {
-		doc.parseForLinks()
+		doc.links = htmlparser.GetUrlList(doc.rootNode)
 	}
 	return doc.links
-}
-
-// Interne Hilfsfunktion: Parst die Links.
-func (doc *HtmlDocument) parseForLinks() {
-	links := htmlparser.GetUrlList(doc.rootNode)
-	doc.links = links
 }
