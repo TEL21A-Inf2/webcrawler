@@ -1,7 +1,7 @@
-package htmldocument
+package testdata
 
 const (
-	simplePageNoLinks = `
+	SimplePageNoLinks = `
 <!DOCTYPE html>
 <html>
 <body>
@@ -14,7 +14,7 @@ const (
 </html>
 `
 
-	simplePageOneLink = `
+	SimplePageOneLink = `
 <!DOCTYPE html>
 <html>
 <body>
@@ -29,7 +29,7 @@ const (
 </html>
 `
 
-	simplePageTwoLinks = `
+	SimplePageTwoLinks = `
 <!DOCTYPE html>
 <html>
 <body>
