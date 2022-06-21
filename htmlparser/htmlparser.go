@@ -22,6 +22,7 @@ func getHref(node *html.Node) (string, error) {
 	return "", errors.New("node has no href attribute")
 }
 
+// Liefert eine Liste der URLs, die im HTML-Baum von node als Links vorkommen.
 func GetUrlList(node *html.Node) []string {
 	result := make([]string, 0)
 
