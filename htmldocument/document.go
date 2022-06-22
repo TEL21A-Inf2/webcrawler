@@ -1,6 +1,9 @@
 package htmldocument
 
 import (
+	"bufio"
+	"io"
+	"os"
 	"strings"
 
 	"github.com/tel21a-inf2/webcrawler/htmlparser"
@@ -16,14 +19,31 @@ type HtmlDocument struct {
 	links []string
 }
 
-// Erzeugt ein neues Dokument aus einem String.
+// Erzeugt ein neues Dokument aus einem io.Reader.
 // Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
-func FromString(source string) (*HtmlDocument, error) {
-	root, err := html.Parse(strings.NewReader(source))
+func FromReader(reader io.Reader) (*HtmlDocument, error) {
+	root, err := html.Parse(reader)
 	if err != nil {
 		return nil, err
 	}
 	return &HtmlDocument{root, nil}, nil
+}
+
+// Erzeugt ein neues Dokument aus einem String.
+// Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
+func FromString(source string) (*HtmlDocument, error) {
+	return FromReader(strings.NewReader(source))
+}
+
+// Erzeugt ein neues Dokument aus einer Datei.
+// Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
+func FromFile(path string) (*HtmlDocument, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+	return FromReader(bufio.NewReader(file))
 }
 
 // Liefert die Links, auf die das Dokument verweist.
