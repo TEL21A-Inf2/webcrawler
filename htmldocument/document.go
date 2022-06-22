@@ -8,13 +8,12 @@ import (
 )
 
 // Repräsentiert ein HTML-Dokument.
-// Enthält den Wurzelknoten des geparsten HMTL-Dokuments,
-// den Quelltext und eine Liste der Links aus diesem Dokument.
+// Enthält den Wurzelknoten des geparsten HMTL-Dokuments
+// und eine Liste der Links aus diesem Dokument.
 type HtmlDocument struct {
 	rootNode *html.Node
 
-	source string
-	links  []string
+	links []string
 }
 
 // Erzeugt ein neues Dokument aus einem String.
@@ -24,7 +23,7 @@ func FromString(source string) (*HtmlDocument, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &HtmlDocument{root, source, nil}, nil
+	return &HtmlDocument{root, nil}, nil
 }
 
 // Liefert die Links, auf die das Dokument verweist.
