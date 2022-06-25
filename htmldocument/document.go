@@ -2,7 +2,9 @@ package htmldocument
 
 import (
 	"bufio"
+	"bytes"
 	"io"
+	"net/http"
 	"os"
 	"strings"
 
@@ -35,6 +37,12 @@ func FromString(source string) (*HtmlDocument, error) {
 	return FromReader(strings.NewReader(source))
 }
 
+// Erzeugt ein neues Dokument aus einem String.
+// Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
+func FromBytes(data []byte) (*HtmlDocument, error) {
+	return FromReader(bytes.NewReader(data))
+}
+
 // Erzeugt ein neues Dokument aus einer Datei.
 // Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
 func FromFile(path string) (*HtmlDocument, error) {
@@ -44,6 +52,20 @@ func FromFile(path string) (*HtmlDocument, error) {
 	}
 	defer file.Close()
 	return FromReader(bufio.NewReader(file))
+}
+
+// Erzeugt ein neues Dokument aus einer URL.
+func FromUrl(url string) (*HtmlDocument, error) {
+	response, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		return nil, err
+	}
+	return FromBytes(body)
 }
 
 // Liefert die Links, auf die das Dokument verweist.
