@@ -12,7 +12,7 @@ import (
 type HtmlDocument struct {
 	doc *goquery.Document
 
-	links []string
+	links []htmlparser.Hyperlink
 }
 
 // Erzeugt ein neues Dokument aus einem String.
@@ -56,9 +56,9 @@ func FromUrl(url string) (*HtmlDocument, error) {
 
 // Liefert die Links, auf die das Dokument verweist.
 // Erzeugt die Liste, falls sie noch nicht existiert.
-func (doc *HtmlDocument) Links() []string {
+func (doc *HtmlDocument) Links() []htmlparser.Hyperlink {
 	if doc.links == nil {
-		doc.links = htmlparser.GetUrlList(doc.doc)
+		doc.links = htmlparser.GetLinks(doc.doc)
 	}
 	return doc.links
 }
