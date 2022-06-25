@@ -4,11 +4,11 @@ import (
 	"bufio"
 	"bytes"
 	"io"
-	"net/http"
 	"os"
 	"strings"
 
 	"github.com/tel21a-inf2/webcrawler/htmlparser"
+	"github.com/tel21a-inf2/webcrawler/httpreader"
 	"golang.org/x/net/html"
 )
 
@@ -56,16 +56,11 @@ func FromFile(path string) (*HtmlDocument, error) {
 
 // Erzeugt ein neues Dokument aus einer URL.
 func FromUrl(url string) (*HtmlDocument, error) {
-	response, err := http.Get(url)
+	htmldata, err := httpreader.Get(url)
 	if err != nil {
 		return nil, err
 	}
-	defer response.Body.Close()
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		return nil, err
-	}
-	return FromBytes(body)
+	return FromBytes(htmldata)
 }
 
 // Liefert die Links, auf die das Dokument verweist.
