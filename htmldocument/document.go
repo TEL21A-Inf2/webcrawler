@@ -1,73 +1,64 @@
 package htmldocument
 
 import (
-	"bufio"
-	"bytes"
-	"io"
-	"os"
-	"strings"
-
+	"github.com/PuerkitoBio/goquery"
 	"github.com/tel21a-inf2/webcrawler/htmlparser"
 	"github.com/tel21a-inf2/webcrawler/httpreader"
-	"golang.org/x/net/html"
 )
 
 // Repräsentiert ein HTML-Dokument.
 // Enthält den Wurzelknoten des geparsten HMTL-Dokuments
 // und eine Liste der Links aus diesem Dokument.
 type HtmlDocument struct {
-	rootNode *html.Node
+	doc *goquery.Document
 
 	links []string
 }
 
-// Erzeugt ein neues Dokument aus einem io.Reader.
+// Erzeugt ein neues Dokument aus einem String.
 // Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
-func FromReader(reader io.Reader) (*HtmlDocument, error) {
-	root, err := html.Parse(reader)
+func FromString(data string) (*HtmlDocument, error) {
+	doc, err := httpreader.GoQueryDocumentFromString(data)
 	if err != nil {
 		return nil, err
 	}
-	return &HtmlDocument{root, nil}, nil
-}
-
-// Erzeugt ein neues Dokument aus einem String.
-// Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
-func FromString(source string) (*HtmlDocument, error) {
-	return FromReader(strings.NewReader(source))
+	return &HtmlDocument{doc, nil}, nil
 }
 
 // Erzeugt ein neues Dokument aus einem String.
 // Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
 func FromBytes(data []byte) (*HtmlDocument, error) {
-	return FromReader(bytes.NewReader(data))
+	doc, err := httpreader.GoQueryDocumentFromBytes(data)
+	if err != nil {
+		return nil, err
+	}
+	return &HtmlDocument{doc, nil}, nil
 }
 
 // Erzeugt ein neues Dokument aus einer Datei.
 // Die Links werden noch nicht initialisiert, sondern erst bei Bedarf.
 func FromFile(path string) (*HtmlDocument, error) {
-	file, err := os.Open(path)
+	doc, err := httpreader.GoQueryDocumentFromFile(path)
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
-	return FromReader(bufio.NewReader(file))
+	return &HtmlDocument{doc, nil}, nil
 }
 
 // Erzeugt ein neues Dokument aus einer URL.
 func FromUrl(url string) (*HtmlDocument, error) {
-	htmldata, err := httpreader.Get(url)
+	doc, err := httpreader.GoQueryDocumentFromUrl(url)
 	if err != nil {
 		return nil, err
 	}
-	return FromBytes(htmldata)
+	return &HtmlDocument{doc, nil}, nil
 }
 
 // Liefert die Links, auf die das Dokument verweist.
 // Erzeugt die Liste, falls sie noch nicht existiert.
 func (doc *HtmlDocument) Links() []string {
 	if doc.links == nil {
-		doc.links = htmlparser.GetUrlList(doc.rootNode)
+		doc.links = htmlparser.GetUrlList(doc.doc)
 	}
 	return doc.links
 }
