@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/tel21a-inf2/webcrawler/htmldocument"
+	"github.com/tel21a-inf2/webcrawler/htmlparser"
 )
 
 // Ein einfaches Programm, das den Benutzer nach einer URL fragt und die Links auf
@@ -15,7 +15,7 @@ func main() {
 	var url string
 	fmt.Scanln(&url)
 
-	htmlDoc, err := htmldocument.FromUrl(url)
+	htmlDoc, err := htmlparser.FromUrl(url)
 	if err != nil {
 		log.Fatal(err)
 	}
