@@ -20,5 +20,7 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println("Es wurden folgende Links gefunden:")
-	fmt.Println(htmlDoc.Links())
+	for _, link := range htmlDoc.Links() {
+		fmt.Printf("Url: %s, Text: %s\n", link.Url, link.Text)
+	}
 }
