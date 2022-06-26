@@ -6,7 +6,7 @@ import (
 	"github.com/tel21a-inf2/webcrawler/htmlparser/testdata"
 )
 
-func ExampleDocument_Links_PageWithoutLinks_FromString() {
+func ExampleHtmlDocument_Links_pageWithoutLinksFromString() {
 	doc, _ := FromString(testdata.SimplePageNoLinks)
 	fmt.Println(doc.Links())
 
@@ -14,7 +14,7 @@ func ExampleDocument_Links_PageWithoutLinks_FromString() {
 	// []
 }
 
-func ExampleDocument_Links_PageWithoutLinks_FromFile() {
+func ExampleHtmlDocument_Links_pageWithoutLinksFromFile() {
 	doc, _ := FromFile("testdata/simplepagenolinks.html")
 	fmt.Println(doc.Links())
 
@@ -22,7 +22,7 @@ func ExampleDocument_Links_PageWithoutLinks_FromFile() {
 	// []
 }
 
-func ExampleDocument_Links_PageWithOneLink_FromString() {
+func ExampleHtmlDocument_Links_pageWithOneLinkFromString() {
 	doc, _ := FromString(testdata.SimplePageOneLink)
 	fmt.Println(doc.Links())
 
@@ -30,7 +30,7 @@ func ExampleDocument_Links_PageWithOneLink_FromString() {
 	// [{url link text}]
 }
 
-func ExampleDocument_Links_PageWithOneLink_FromFile() {
+func ExampleHtmlDocument_Links_pageWithOneLinkFromFile() {
 	doc, _ := FromFile("testdata/simplepageonelink.html")
 	fmt.Println(doc.Links())
 
@@ -38,7 +38,7 @@ func ExampleDocument_Links_PageWithOneLink_FromFile() {
 	// [{url link text}]
 }
 
-func ExampleHtmlDocument_Links_PageWithTwoLinks_FromString() {
+func ExampleHtmlDocument_Links_pageWithTwoLinksFromString() {
 	doc1, _ := FromString(testdata.SimplePageTwoLinks)
 	fmt.Println(doc1.Links())
 
@@ -46,7 +46,7 @@ func ExampleHtmlDocument_Links_PageWithTwoLinks_FromString() {
 	// [{url1 link text 1} {url2 link text 2}]
 }
 
-func ExampleHtmlDocument_Links_PageWithTwoLinks_FromFile() {
+func ExampleHtmlDocument_Links_pageWithTwoLinksFromFile() {
 	doc, _ := FromFile("testdata/simplepagetwolinks.html")
 	fmt.Println(doc.Links())
 
