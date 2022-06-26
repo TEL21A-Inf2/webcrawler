@@ -1,9 +1,9 @@
-package htmldocument
+package htmlparser
 
 import (
 	"fmt"
 
-	"github.com/tel21a-inf2/webcrawler/htmldocument/testdata"
+	"github.com/tel21a-inf2/webcrawler/htmlparser/testdata"
 )
 
 func ExampleDocument_Links_PageWithoutLinks_FromString() {
@@ -38,15 +38,15 @@ func ExampleDocument_Links_PageWithOneLink_FromFile() {
 	// [{url link text}]
 }
 
-func ExampleDocument_Links_PageWithTwoLinks_FromString() {
-	doc, _ := FromString(testdata.SimplePageTwoLinks)
-	fmt.Println(doc.Links())
+func ExampleHtmlDocument_Links_PageWithTwoLinks_FromString() {
+	doc1, _ := FromString(testdata.SimplePageTwoLinks)
+	fmt.Println(doc1.Links())
 
 	// Output:
 	// [{url1 link text 1} {url2 link text 2}]
 }
 
-func ExampleDocument_Links_PageWithTwoLinks_FromFile() {
+func ExampleHtmlDocument_Links_PageWithTwoLinks_FromFile() {
 	doc, _ := FromFile("testdata/simplepagetwolinks.html")
 	fmt.Println(doc.Links())
 

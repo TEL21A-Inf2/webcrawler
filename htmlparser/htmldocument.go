@@ -1,8 +1,7 @@
-package htmldocument
+package htmlparser
 
 import (
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tel21a-inf2/webcrawler/htmlparser"
 	"github.com/tel21a-inf2/webcrawler/httpreader"
 )
 
@@ -12,7 +11,7 @@ import (
 type HtmlDocument struct {
 	doc *goquery.Document
 
-	links []htmlparser.Hyperlink
+	links []Hyperlink
 }
 
 // Erzeugt ein neues Dokument aus einem String.
@@ -56,9 +55,9 @@ func FromUrl(url string) (*HtmlDocument, error) {
 
 // Liefert die Links, auf die das Dokument verweist.
 // Erzeugt die Liste, falls sie noch nicht existiert.
-func (doc *HtmlDocument) Links() []htmlparser.Hyperlink {
+func (doc *HtmlDocument) Links() []Hyperlink {
 	if doc.links == nil {
-		doc.links = htmlparser.GetLinks(doc.doc)
+		doc.links = GetLinks(doc.doc)
 	}
 	return doc.links
 }

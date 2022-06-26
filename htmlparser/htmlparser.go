@@ -4,11 +4,6 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-// Repräsentiert einen Hyperlink bestehend aus der Url und dem Link-Text.
-type Hyperlink struct {
-	url, text string
-}
-
 // Liefert eine Liste der URLs, die im HTML-Baum von node als Links vorkommen.
 func GetLinks(doc *goquery.Document) []Hyperlink {
 	result := make([]Hyperlink, 0)
