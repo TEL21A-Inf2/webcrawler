@@ -10,7 +10,7 @@ func GetLinks(doc *goquery.Document) []Hyperlink {
 
 	addSelectionToResult := func(i int, s *goquery.Selection) {
 		url, _ := s.Attr("href")
-		result = append(result, Hyperlink{url, s.Text()})
+		result = append(result, NewHyperlink(url, s.Text()))
 	}
 
 	doc.Find("a").

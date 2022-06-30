@@ -1,6 +1,24 @@
 package htmlparser
 
+import (
+	"fmt"
+	"net/url"
+)
+
 // Repräsentiert einen Hyperlink bestehend aus der Url und dem Link-Text.
 type Hyperlink struct {
-	Url, Text string
+	Url  url.URL
+	Text string
+}
+
+func NewHyperlink(rawUrl, text string) Hyperlink {
+	parsedUrl, err := url.Parse(rawUrl)
+	if err != nil {
+		return Hyperlink{}
+	}
+	return Hyperlink{*parsedUrl, text}
+}
+
+func (link Hyperlink) String() string {
+	return fmt.Sprintf("%s: %s", link.Text, link.Url.String())
 }

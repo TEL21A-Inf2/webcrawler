@@ -27,7 +27,7 @@ func ExampleHtmlDocument_Links_pageWithOneLinkFromString() {
 	fmt.Println(doc.Links())
 
 	// Output:
-	// [{url link text}]
+	// [link text: url]
 }
 
 func ExampleHtmlDocument_Links_pageWithOneLinkFromFile() {
@@ -35,7 +35,7 @@ func ExampleHtmlDocument_Links_pageWithOneLinkFromFile() {
 	fmt.Println(doc.Links())
 
 	// Output:
-	// [{url link text}]
+	// [link text: url]
 }
 
 func ExampleHtmlDocument_Links_pageWithTwoLinksFromString() {
@@ -43,7 +43,7 @@ func ExampleHtmlDocument_Links_pageWithTwoLinksFromString() {
 	fmt.Println(doc1.Links())
 
 	// Output:
-	// [{url1 link text 1} {url2 link text 2}]
+	// [link text 1: url1 link text 2: url2]
 }
 
 func ExampleHtmlDocument_Links_pageWithTwoLinksFromFile() {
@@ -51,5 +51,5 @@ func ExampleHtmlDocument_Links_pageWithTwoLinksFromFile() {
 	fmt.Println(doc.Links())
 
 	// Output:
-	// [{url1 link text 1} {url2 link text 2}]
+	// [link text 1: url1 link text 2: url2]
 }
