@@ -1,6 +1,8 @@
 package htmlparser
 
 import (
+	"strings"
+
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -21,5 +23,9 @@ func GetLinks(doc *goquery.Document) LinkList {
 }
 
 func GetText(doc *goquery.Document) string {
-	return doc.Text()
+	return strings.TrimSpace(doc.Text())
+}
+
+func Contains(doc *goquery.Document, substring string) bool {
+	return strings.Contains(GetText(doc), substring)
 }

@@ -29,3 +29,7 @@ func (doc *HtmlDocument) Text() string {
 	}
 	return doc.text
 }
+
+func (doc *HtmlDocument) Contains(substring string) bool {
+	return Contains(doc.doc, substring)
+}

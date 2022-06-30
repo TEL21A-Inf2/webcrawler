@@ -58,30 +58,36 @@ func ExampleHtmlDocument_Links_pageWithTwoLinksAndTextFromString() {
 	doc1, _ := FromString(testdata.SimplePageTwoLinksAndText)
 	fmt.Println(doc1.Links())
 	fmt.Println(doc1.Text())
+	fmt.Println(doc1.Contains("dolor"))
+	fmt.Println(doc1.Contains("foo"))
 
 	// Output:
 	// [link text 1: url1 link text 2: url2]
-	//
 	// My First Heading
 	// My first paragraph.
 	// Lorem ipsum
 	// link text 1
 	// link text 2 dolor
 	// sit amet
+	// true
+	// false
 }
 
 func ExampleHtmlDocument_Links_pageWithTwoLinksAndTextFromFile() {
 	doc, _ := FromFile("testdata/simplepagetwolinksandtext.html")
 	fmt.Println(doc.Links())
 	fmt.Println(doc.Text())
+	fmt.Println(doc.Contains("dolor"))
+	fmt.Println(doc.Contains("foo"))
 
 	// Output:
 	// [link text 1: url1 link text 2: url2]
-	//
 	// My First Heading
 	// My first paragraph.
 	// Lorem ipsum
 	// link text 1
 	// link text 2 dolor
 	// sit amet
+	// true
+	// false
 }
