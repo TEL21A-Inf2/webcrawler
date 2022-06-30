@@ -28,9 +28,9 @@ func main() {
 
 	fmt.Println("Es wurden folgende Links gefunden:")
 	htmlDoc.Links().
-		Filter(func(link htmlparser.Hyperlink) bool { return link.IsValid() }).
-		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Path != "" }).
-		Each(func(link *htmlparser.Hyperlink) { link.Url = parsedUrl.ResolveReference(link.Url) }).
-		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Hostname() == "de.wikipedia.org" }).
-		PrintAll()
+		Filter(func(link htmlparser.Hyperlink) bool { return link.IsValid() }).                            // Nur valide Links
+		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Path != "" }).                       // Keine Links ohne Pfadangabe (z.B. keine Links innerhalb der selben Webseite)
+		Each(func(link *htmlparser.Hyperlink) { link.Url = parsedUrl.ResolveReference(link.Url) }).        // Alle Links absolut machen
+		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Hostname() == "de.wikipedia.org" }). // Nur Links innerhalb der deutschen Wikipedia-Seite
+		PrintAll()                                                                                         // Alles ausgeben
 }
