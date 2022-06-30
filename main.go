@@ -20,9 +20,11 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println("Es wurden folgende Links gefunden:")
-	for _, link := range htmlDoc.Links() {
-		if link.IsValid() {
-			fmt.Println(link)
-		}
+	links := htmlDoc.Links().
+		Filter(func(link htmlparser.Hyperlink) bool { return link.IsValid() }).
+		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Path != "" })
+
+	for _, link := range links {
+		fmt.Println(link)
 	}
 }
