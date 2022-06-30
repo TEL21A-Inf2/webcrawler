@@ -10,12 +10,12 @@ import (
 type HtmlDocument struct {
 	doc *goquery.Document
 
-	links []Hyperlink
+	links LinkList
 }
 
 // Liefert die Links, auf die das Dokument verweist.
 // Erzeugt die Liste, falls sie noch nicht existiert.
-func (doc *HtmlDocument) Links() []Hyperlink {
+func (doc *HtmlDocument) Links() LinkList {
 	if doc.links == nil {
 		doc.links = GetLinks(doc.doc)
 	}

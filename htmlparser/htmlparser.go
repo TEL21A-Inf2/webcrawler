@@ -5,8 +5,8 @@ import (
 )
 
 // Liefert eine Liste der URLs, die im HTML-Baum von node als Links vorkommen.
-func GetLinks(doc *goquery.Document) []Hyperlink {
-	result := make([]Hyperlink, 0)
+func GetLinks(doc *goquery.Document) LinkList {
+	result := make(LinkList, 0)
 
 	addSelectionToResult := func(i int, s *goquery.Selection) {
 		url, _ := s.Attr("href")
