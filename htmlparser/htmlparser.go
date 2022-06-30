@@ -19,3 +19,7 @@ func GetLinks(doc *goquery.Document) LinkList {
 
 	return result
 }
+
+func GetText(doc *goquery.Document) string {
+	return doc.Text()
+}

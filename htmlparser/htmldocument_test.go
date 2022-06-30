@@ -61,12 +61,13 @@ func ExampleHtmlDocument_Links_pageWithTwoLinksAndTextFromString() {
 
 	// Output:
 	// [link text 1: url1 link text 2: url2]
+	//
 	// My First Heading
 	// My first paragraph.
 	// Lorem ipsum
 	// link text 1
-	// link text 2
-	// dolor sit amet
+	// link text 2 dolor
+	// sit amet
 }
 
 func ExampleHtmlDocument_Links_pageWithTwoLinksAndTextFromFile() {
@@ -76,10 +77,11 @@ func ExampleHtmlDocument_Links_pageWithTwoLinksAndTextFromFile() {
 
 	// Output:
 	// [link text 1: url1 link text 2: url2]
+	//
 	// My First Heading
 	// My first paragraph.
 	// Lorem ipsum
 	// link text 1
-	// link text 2
-	// dolor sit amet
+	// link text 2 dolor
+	// sit amet
 }

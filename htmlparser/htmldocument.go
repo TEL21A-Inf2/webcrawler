@@ -11,6 +11,7 @@ type HtmlDocument struct {
 	doc *goquery.Document
 
 	links LinkList
+	text  string
 }
 
 // Liefert die Links, auf die das Dokument verweist.
@@ -23,5 +24,8 @@ func (doc *HtmlDocument) Links() LinkList {
 }
 
 func (doc *HtmlDocument) Text() string {
-	return ""
+	if doc.text == "" {
+		doc.text = GetText(doc.doc)
+	}
+	return doc.text
 }

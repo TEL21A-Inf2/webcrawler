@@ -11,7 +11,7 @@ func FromString(data string) (*HtmlDocument, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &HtmlDocument{doc, nil}, nil
+	return &HtmlDocument{doc, nil, ""}, nil
 }
 
 // Erzeugt ein neues Dokument aus einem String.
@@ -21,7 +21,7 @@ func FromBytes(data []byte) (*HtmlDocument, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &HtmlDocument{doc, nil}, nil
+	return &HtmlDocument{doc, nil, ""}, nil
 }
 
 // Erzeugt ein neues Dokument aus einer Datei.
@@ -31,7 +31,7 @@ func FromFile(path string) (*HtmlDocument, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &HtmlDocument{doc, nil}, nil
+	return &HtmlDocument{doc, nil, ""}, nil
 }
 
 // Erzeugt ein neues Dokument aus einer URL.
@@ -40,5 +40,5 @@ func FromUrl(url string) (*HtmlDocument, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &HtmlDocument{doc, nil}, nil
+	return &HtmlDocument{doc, nil, ""}, nil
 }
