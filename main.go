@@ -33,4 +33,18 @@ func main() {
 		Each(func(link *htmlparser.Hyperlink) { link.Url = parsedUrl.ResolveReference(link.Url) }).        // Alle Links absolut machen
 		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Hostname() == "de.wikipedia.org" }). // Nur Links innerhalb der deutschen Wikipedia-Seite
 		PrintAll()                                                                                         // Alles ausgeben
+
+	fmt.Println("Dies ist der Text der Webseite")
+	fmt.Println(htmlDoc.Text())
+
+	fmt.Println("Bitte einen Suchbegriff eingeben:")
+	var searchquery string
+	fmt.Scanln(&searchquery)
+
+	docContainsSearchQuery := htmlDoc.Contains(searchquery)
+	if docContainsSearchQuery {
+		fmt.Println("Der Suchbegriff ist enthalten.")
+	} else {
+		fmt.Println("Der Suchbegriff ist nicht enthalten.")
+	}
 }
