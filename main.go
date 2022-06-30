@@ -23,5 +23,5 @@ func main() {
 	htmlDoc.Links().
 		Filter(func(link htmlparser.Hyperlink) bool { return link.IsValid() }).
 		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Path != "" }).
-		Each(func(link htmlparser.Hyperlink) { fmt.Println(link) })
+		PrintAll()
 }

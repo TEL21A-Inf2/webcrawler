@@ -1,5 +1,7 @@
 package htmlparser
 
+import "fmt"
+
 type LinkList []Hyperlink
 
 func (list LinkList) Filter(pred func(link Hyperlink) bool) LinkList {
@@ -17,4 +19,8 @@ func (list LinkList) Each(function func(link Hyperlink)) LinkList {
 		function(link)
 	}
 	return list
+}
+
+func (list LinkList) PrintAll() LinkList {
+	return list.Each(func(link Hyperlink) { fmt.Println(link) })
 }
