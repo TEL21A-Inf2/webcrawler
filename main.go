@@ -31,5 +31,6 @@ func main() {
 		Filter(func(link htmlparser.Hyperlink) bool { return link.IsValid() }).
 		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Path != "" }).
 		Each(func(link *htmlparser.Hyperlink) { link.Url = parsedUrl.ResolveReference(link.Url) }).
+		Filter(func(link htmlparser.Hyperlink) bool { return link.Url.Hostname() == "de.wikipedia.org" }).
 		PrintAll()
 }
