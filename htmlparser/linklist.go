@@ -11,3 +11,10 @@ func (list LinkList) Filter(pred func(link Hyperlink) bool) LinkList {
 	}
 	return result
 }
+
+func (list LinkList) Each(function func(link Hyperlink)) LinkList {
+	for _, link := range list {
+		function(link)
+	}
+	return list
+}
