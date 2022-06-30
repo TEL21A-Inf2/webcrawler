@@ -8,11 +8,9 @@ import (
 func GetLinks(doc *goquery.Document) []Hyperlink {
 	result := make([]Hyperlink, 0)
 
-	doc.Find("a").Each(func(i int, s *goquery.Selection) {
-		url, exists := s.Attr("href")
-		if exists {
-			result = append(result, Hyperlink{url, s.Text()})
-		}
+	doc.Find("a").Filter("a[href]").Each(func(i int, s *goquery.Selection) {
+		url, _ := s.Attr("href")
+		result = append(result, Hyperlink{url, s.Text()})
 	})
 
 	return result
