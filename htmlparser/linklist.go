@@ -14,13 +14,13 @@ func (list LinkList) Filter(pred func(link Hyperlink) bool) LinkList {
 	return result
 }
 
-func (list LinkList) Each(function func(link Hyperlink)) LinkList {
-	for _, link := range list {
-		function(link)
+func (list LinkList) Each(function func(link *Hyperlink)) LinkList {
+	for i := range list {
+		function(&list[i])
 	}
 	return list
 }
 
 func (list LinkList) PrintAll() LinkList {
-	return list.Each(func(link Hyperlink) { fmt.Println(link) })
+	return list.Each(func(link *Hyperlink) { fmt.Println(link) })
 }
