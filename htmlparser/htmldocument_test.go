@@ -53,3 +53,33 @@ func ExampleHtmlDocument_Links_pageWithTwoLinksFromFile() {
 	// Output:
 	// [link text 1: url1 link text 2: url2]
 }
+
+func ExampleHtmlDocument_Links_pageWithTwoLinksAndTextFromString() {
+	doc1, _ := FromString(testdata.SimplePageTwoLinksAndText)
+	fmt.Println(doc1.Links())
+	fmt.Println(doc1.Text())
+
+	// Output:
+	// [link text 1: url1 link text 2: url2]
+	// My First Heading
+	// My first paragraph.
+	// Lorem ipsum
+	// link text 1
+	// link text 2
+	// dolor sit amet
+}
+
+func ExampleHtmlDocument_Links_pageWithTwoLinksAndTextFromFile() {
+	doc, _ := FromFile("testdata/simplepagetwolinksandtext.html")
+	fmt.Println(doc.Links())
+	fmt.Println(doc.Text())
+
+	// Output:
+	// [link text 1: url1 link text 2: url2]
+	// My First Heading
+	// My first paragraph.
+	// Lorem ipsum
+	// link text 1
+	// link text 2
+	// dolor sit amet
+}

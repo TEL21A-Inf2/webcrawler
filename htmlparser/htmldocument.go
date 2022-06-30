@@ -21,3 +21,7 @@ func (doc *HtmlDocument) Links() LinkList {
 	}
 	return doc.links
 }
+
+func (doc *HtmlDocument) Text() string {
+	return ""
+}

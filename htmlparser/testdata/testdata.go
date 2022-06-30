@@ -10,3 +10,6 @@ var SimplePageOneLink string
 
 //go:embed simplepagetwolinks.html
 var SimplePageTwoLinks string
+
+//go:embed simplepagetwolinksandtext.html
+var SimplePageTwoLinksAndText string
