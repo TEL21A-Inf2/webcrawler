@@ -21,6 +21,8 @@ func main() {
 	}
 	fmt.Println("Es wurden folgende Links gefunden:")
 	for _, link := range htmlDoc.Links() {
-		fmt.Println(link)
+		if link.IsValid() {
+			fmt.Println(link)
+		}
 	}
 }
