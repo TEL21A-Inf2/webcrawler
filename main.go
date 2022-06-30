@@ -8,8 +8,8 @@ import (
 	"github.com/tel21a-inf2/webcrawler/htmlparser"
 )
 
-// Ein einfaches Programm, das den Benutzer nach einer URL fragt und die Links auf
-// auf dieser Seite ausgibt.
+// Ein einfaches Programm, das den Benutzer nach einer URL fragt und
+// die Links auf dieser Seite ausgibt.
 
 func main() {
 	fmt.Println("Bitte eine URL eingeben:")
